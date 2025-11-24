@@ -1,10 +1,11 @@
-package com.colegio.gestion_clases.entities;
+package com.colegio.gestion_clases.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.colegio.gestion_clases.model.embeddable.Audit;
+import com.colegio.gestion_clases.models.embeddable.Audit;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -15,12 +16,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "teachers")
-public class Teacher {
+@Table(name = "students")
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -32,22 +32,16 @@ public class Teacher {
     @Column(name = "rut", nullable = false)
     private String rut;
 
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "phone", nullable = false, length = 20)
-    private String phone;
-
-    @Column(name = "active", nullable = false)
+    @Column(name = "active",  nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean active = true;
-
-    @OneToMany(mappedBy = "teacher")
-    private List<SchoolClass> schoolClasses = new ArrayList<>();
 
     @Embedded
     private Audit audit = new Audit();
 
-    public Teacher() {
+    @OneToMany(mappedBy = "student", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Note> notes = new ArrayList<>();
+
+    public Student() {
     }
 
     public Long getId() {
@@ -82,22 +76,6 @@ public class Teacher {
         this.rut = rut;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public boolean isActive() {
         return active;
     }
@@ -112,5 +90,13 @@ public class Teacher {
 
     public void setAudit(Audit audit) {
         this.audit = audit;
-    } 
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> note) {
+        this.notes = note;
+    }    
 }

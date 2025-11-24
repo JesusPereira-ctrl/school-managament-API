@@ -1,4 +1,4 @@
-package com.colegio.gestion_clases.model.embeddable;
+package com.colegio.gestion_clases.models.embeddable;
 
 import java.time.LocalDateTime;
 
