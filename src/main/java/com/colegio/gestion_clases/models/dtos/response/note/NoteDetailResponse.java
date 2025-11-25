@@ -1,4 +1,4 @@
-package com.colegio.gestion_clases.models.dtos.response;
+package com.colegio.gestion_clases.models.dtos.response.note;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NoteResponse {
+public class NoteDetailResponse {
 
     private Long id;
     private Double value;
@@ -19,10 +19,11 @@ public class NoteResponse {
     private String observation;
     private Long studentId;
     private Long schoolClassId;
+    private String course;
     private String createdAt;
     private String updatedAt;
 
-    public NoteResponse(Note note) {
+    public NoteDetailResponse(Note note) {
         this.id = note.getId();
         this.value = note.getValue();
         this.type = note.getType();
@@ -30,6 +31,7 @@ public class NoteResponse {
         this.observation = note.getObservation();
         this.studentId = note.getStudent().getId();
         this.schoolClassId = note.getSchoolClass().getId();
+        this.course = note.getSchoolClass().getCourse();
         this.createdAt = DateFormatterUtil.format(note.getAudit().getCreatedAt());
         this.updatedAt = DateFormatterUtil.format(note.getAudit().getUpdatedAt());
     }

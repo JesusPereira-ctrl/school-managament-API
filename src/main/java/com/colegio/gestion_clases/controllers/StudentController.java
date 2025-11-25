@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.colegio.gestion_clases.models.dtos.request.StudentRequest;
-import com.colegio.gestion_clases.models.dtos.response.StudentResponse;
+import com.colegio.gestion_clases.models.dtos.response.student.StudentDetailResponse;
+import com.colegio.gestion_clases.models.dtos.response.student.StudentSummaryResponse;
 import com.colegio.gestion_clases.services.StudentService;
 
 import jakarta.validation.Valid;
@@ -29,12 +30,12 @@ public class StudentController {
     }
 
     @RequestMapping("")
-    public ResponseEntity<List<StudentResponse>> getAll() {
+    public ResponseEntity<List<StudentSummaryResponse>> getAll() {
         return ResponseEntity.ok(studentService.getAll());
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<StudentResponse> getById(
+    public ResponseEntity<StudentDetailResponse> getById(
         @PathVariable(required = true) Long id
     ) {
         return ResponseEntity
@@ -42,7 +43,7 @@ public class StudentController {
     }
 
     @PostMapping("")
-    public ResponseEntity<StudentResponse> create(
+    public ResponseEntity<StudentDetailResponse> create(
         @RequestBody(required = true) @Valid StudentRequest studentRequest
     ) {
         return ResponseEntity
@@ -51,7 +52,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentResponse> update(
+    public ResponseEntity<StudentDetailResponse> update(
         @PathVariable(required = true) Long id,
         @RequestBody(required = true) StudentRequest studentRequest
     ) {

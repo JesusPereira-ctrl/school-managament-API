@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.colegio.gestion_clases.exceptions.ResourceNotFoundException;
 import com.colegio.gestion_clases.models.dtos.request.StudentRequest;
-import com.colegio.gestion_clases.models.dtos.response.StudentResponse;
+import com.colegio.gestion_clases.models.dtos.response.student.StudentDetailResponse;
+import com.colegio.gestion_clases.models.dtos.response.student.StudentSummaryResponse;
 import com.colegio.gestion_clases.models.entities.Student;
 import com.colegio.gestion_clases.repositories.StudentRepository;
 import com.colegio.gestion_clases.services.StudentService;
@@ -21,23 +22,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponse> getAll() {
+    public List<StudentSummaryResponse> getAll() {
         return studentRepository.findAll()
                                 .stream()
-                                .map(StudentResponse::new)
+                                .map(StudentSummaryResponse::new)
                                 .toList();
     }
 
     @Override
-    public StudentResponse getById(Long id) {
+    public StudentDetailResponse getById(Long id) {
         Student studentDB = studentRepository.findById(id)
-                                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+                                             .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
 
-        return new StudentResponse(studentDB);
+        return new StudentDetailResponse(studentDB);
     }
 
     @Override
-    public StudentResponse create(StudentRequest studentRequest) {
+    public StudentDetailResponse create(StudentRequest studentRequest) {
         Student studentNew = new Student();
 
         studentNew.setName(studentRequest.getName());
@@ -46,11 +47,11 @@ public class StudentServiceImpl implements StudentService {
 
         studentRepository.save(studentNew);
 
-        return new StudentResponse(studentNew);
+        return new StudentDetailResponse(studentNew);
     }
 
     @Override
-    public StudentResponse update(Long id, StudentRequest studentRequest) {
+    public StudentDetailResponse update(Long id, StudentRequest studentRequest) {
         Student studentDB = studentRepository.findById(id)
                                 .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
 
@@ -60,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
 
         studentRepository.save(studentDB);
         
-        return new StudentResponse(studentDB);
+        return new StudentDetailResponse(studentDB);
     }
 
     @Override
@@ -72,13 +73,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse updateActive(Long id, boolean active) {
+    public StudentDetailResponse updateActive(Long id, boolean active) {
         Student studentDB = studentRepository.findById(id)
                                 .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
 
         studentDB.setActive(active);
         studentRepository.save(studentDB);
 
-        return new StudentResponse(studentDB);
+        return new StudentDetailResponse(studentDB);
     }
 }
