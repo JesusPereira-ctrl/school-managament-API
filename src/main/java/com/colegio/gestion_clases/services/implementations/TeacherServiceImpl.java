@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.colegio.gestion_clases.exceptions.ResourceNotFoundException;
 import com.colegio.gestion_clases.models.dtos.request.TeacherRequest;
-import com.colegio.gestion_clases.models.dtos.response.TeacherResponse;
+import com.colegio.gestion_clases.models.dtos.response.teacher.TeacherDetailResponse;
 import com.colegio.gestion_clases.models.entities.Teacher;
 import com.colegio.gestion_clases.repositories.TeacherRepository;
 import com.colegio.gestion_clases.services.TeacherService;
@@ -21,23 +21,23 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<TeacherResponse> getAll() {
+    public List<TeacherDetailResponse> getAll() {
         return teacherRepository.findAll()
                                 .stream()
-                                .map(TeacherResponse::new)
+                                .map(TeacherDetailResponse::new)
                                 .toList();
     }
 
     @Override
-    public TeacherResponse getById(Long id) {
+    public TeacherDetailResponse getById(Long id) {
         Teacher teacherDB = teacherRepository.findById(id)
                             .orElseThrow(() -> new ResourceNotFoundException("Teacher not found"));
 
-        return new TeacherResponse(teacherDB);
+        return new TeacherDetailResponse(teacherDB);
     }
 
     @Override
-    public TeacherResponse create(TeacherRequest teacherRequest) {
+    public TeacherDetailResponse create(TeacherRequest teacherRequest) {
         Teacher teacherNew = new Teacher();
         teacherNew.setName(teacherRequest.getName());
         teacherNew.setLastname(teacherRequest.getLastname());
@@ -47,11 +47,11 @@ public class TeacherServiceImpl implements TeacherService {
 
         teacherRepository.save(teacherNew);
 
-        return new TeacherResponse(teacherNew);
+        return new TeacherDetailResponse(teacherNew);
     }
 
     @Override
-    public TeacherResponse update(Long id, TeacherRequest teacherRequest) {
+    public TeacherDetailResponse update(Long id, TeacherRequest teacherRequest) {
         Teacher teacherDB = teacherRepository.findById(id)
                             .orElseThrow(() -> new ResourceNotFoundException("Teacher not found"));
 
@@ -63,7 +63,7 @@ public class TeacherServiceImpl implements TeacherService {
 
         teacherRepository.save(teacherDB);
 
-        return new TeacherResponse(teacherDB);
+        return new TeacherDetailResponse(teacherDB);
     }
 
     @Override
@@ -75,13 +75,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public TeacherResponse updateActive(Long id, boolean active) {
+    public TeacherDetailResponse updateActive(Long id, boolean active) {
         Teacher teacherDB = teacherRepository.findById(id)
                             .orElseThrow(() -> new ResourceNotFoundException("Teacher not found"));
 
         teacherDB.setActive(active);
         teacherRepository.save(teacherDB);
 
-        return new TeacherResponse(teacherDB);
+        return new TeacherDetailResponse(teacherDB);
     }
 }

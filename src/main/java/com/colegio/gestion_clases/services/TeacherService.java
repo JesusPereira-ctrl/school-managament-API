@@ -3,19 +3,19 @@ package com.colegio.gestion_clases.services;
 import java.util.List;
 
 import com.colegio.gestion_clases.models.dtos.request.TeacherRequest;
-import com.colegio.gestion_clases.models.dtos.response.TeacherResponse;
+import com.colegio.gestion_clases.models.dtos.response.teacher.TeacherDetailResponse;
 
 public interface TeacherService {
 
-    List<TeacherResponse> getAll();
+    List<TeacherDetailResponse> getAll();
 
-    TeacherResponse getById(Long id);
+    TeacherDetailResponse getById(Long id);
 
-    TeacherResponse create(TeacherRequest teacherRequest);
+    TeacherDetailResponse create(TeacherRequest teacherRequest);
 
-    TeacherResponse update(Long id, TeacherRequest teacherRequest);
+    TeacherDetailResponse update(Long id, TeacherRequest teacherRequest);
 
     void deleteById(Long id);
 
-    TeacherResponse updateActive(Long id, boolean active);
+    TeacherDetailResponse updateActive(Long id, boolean active);
 }

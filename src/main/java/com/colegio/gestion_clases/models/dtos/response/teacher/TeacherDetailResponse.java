@@ -1,4 +1,4 @@
-package com.colegio.gestion_clases.models.dtos.response;
+package com.colegio.gestion_clases.models.dtos.response.teacher;
 
 import com.colegio.gestion_clases.models.entities.Teacher;
 import com.colegio.gestion_clases.utils.DateFormatterUtil;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TeacherResponse {
+public class TeacherDetailResponse {
 
     private Long id;
     private String name;
@@ -21,7 +21,7 @@ public class TeacherResponse {
     private String createdAt;
     private String updatedAt;
 
-    public TeacherResponse(Teacher teacher) {
+    public TeacherDetailResponse(Teacher teacher) {
         this.id = teacher.getId();
         this.name = teacher.getName();
         this.lastname = teacher.getLastname();

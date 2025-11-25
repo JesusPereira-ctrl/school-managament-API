@@ -16,6 +16,7 @@ public class NoteSummaryResponse {
     private String type;
     private LocalDate date;
     private String course;
+    private Long studentId;
 
     public NoteSummaryResponse(Note note) {
         this.id = note.getId();
@@ -23,5 +24,6 @@ public class NoteSummaryResponse {
         this.type = note.getType();
         this.date = note.getDate();
         this.course = note.getSchoolClass().getCourse();
+        this.studentId = note.getStudent().getId();
     }
 }

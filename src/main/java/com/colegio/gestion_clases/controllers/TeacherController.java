@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.colegio.gestion_clases.models.dtos.request.TeacherRequest;
-import com.colegio.gestion_clases.models.dtos.response.TeacherResponse;
+import com.colegio.gestion_clases.models.dtos.response.teacher.TeacherDetailResponse;
 import com.colegio.gestion_clases.services.TeacherService;
 
 import jakarta.validation.Valid;
@@ -31,12 +31,12 @@ public class TeacherController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<TeacherResponse>> getAll() {
+    public ResponseEntity<List<TeacherDetailResponse>> getAll() {
         return ResponseEntity.ok(teacherService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TeacherResponse> getById(
+    public ResponseEntity<TeacherDetailResponse> getById(
         @PathVariable(required = true) Long id
     ) {
         return ResponseEntity
@@ -44,7 +44,7 @@ public class TeacherController {
     }
 
     @PostMapping("")
-    public ResponseEntity<TeacherResponse> create(
+    public ResponseEntity<TeacherDetailResponse> create(
         @RequestBody(required = true) @Valid TeacherRequest teacherRequest
     ) {
         return ResponseEntity
@@ -53,7 +53,7 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TeacherResponse> update(
+    public ResponseEntity<TeacherDetailResponse> update(
         @PathVariable(required = true) Long id,
         @RequestBody @Valid TeacherRequest teacherRequest
     ) {
@@ -62,18 +62,18 @@ public class TeacherController {
     }
 
     @PatchMapping("/{id}/activate")
-    public ResponseEntity<TeacherResponse> activate(
+    public ResponseEntity<TeacherDetailResponse> activate(
         @PathVariable(required = true) Long id
     ) {
-        TeacherResponse teacher = teacherService.updateActive(id, true);
+        TeacherDetailResponse teacher = teacherService.updateActive(id, true);
         return ResponseEntity.ok(teacher);
     }
 
     @PatchMapping("/{id}/deactivate")
-    public ResponseEntity<TeacherResponse> deactivate(
+    public ResponseEntity<TeacherDetailResponse> deactivate(
         @PathVariable(required = true) Long id
     ) {
-        TeacherResponse teacher = teacherService.updateActive(id, false);
+        TeacherDetailResponse teacher = teacherService.updateActive(id, false);
         return ResponseEntity.ok(teacher);
     }
 

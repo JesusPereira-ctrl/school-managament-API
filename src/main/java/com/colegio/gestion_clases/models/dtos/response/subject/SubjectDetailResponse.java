@@ -1,7 +1,8 @@
-package com.colegio.gestion_clases.models.dtos.response;
+package com.colegio.gestion_clases.models.dtos.response.subject;
 
 import java.util.List;
 
+import com.colegio.gestion_clases.models.dtos.response.classes.SchoolClassDetailResponse;
 import com.colegio.gestion_clases.models.entities.Subject;
 import com.colegio.gestion_clases.utils.DateFormatterUtil;
 
@@ -10,17 +11,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubjectResponse {
+public class SubjectDetailResponse {
 
     private Long id;
     private String name;
     private String code;
     private Boolean mandatory;
-    private List<SchoolClassResponse> schoolClasses;
+    private List<SchoolClassDetailResponse> schoolClasses;
     private String createdAt;
     private String updatedAt;
 
-    public SubjectResponse(Subject subject) {
+    public SubjectDetailResponse(Subject subject) {
         this.id = subject.getId();
         this.name = subject.getName();
         this.code = subject.getCode();
@@ -28,7 +29,7 @@ public class SubjectResponse {
         
         this.schoolClasses = subject.getSchoolClasses()
                                     .stream()
-                                    .map(SchoolClassResponse::new)
+                                    .map(SchoolClassDetailResponse::new)
                                     .toList();
 
         this.createdAt = DateFormatterUtil.format(subject.getAudit().getCreatedAt());
