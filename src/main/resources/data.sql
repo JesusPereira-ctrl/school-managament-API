@@ -29,3 +29,77 @@ VALUES ('Francisca Belén', 'Araya Torres', '18234567-8', 'francisca.araya@examp
 
 INSERT INTO teachers (name, lastname, rut, email, phone)
 VALUES ('Cristóbal Martín', 'Vega Morales', '16875432-6', 'cristobal.vega@example.com', '+56901234567');
+
+-- Students
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('María', 'González', '12.345.678-5');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Juan', 'Pérez', '15.678.234-K');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Camila', 'Rojas', '9.876.543-2');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Francisca', 'Muñoz', '7.654.321-8');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Matías', 'Soto', '21.345.987-K');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Diego', 'Ramírez', '18.234.567-3');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Valentina', 'Castillo', '13.579.246-1');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Sebastián', 'Molina', '22.468.135-K');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Ignacia', 'Herrera', '10.456.789-7');
+
+INSERT INTO students (name, lastname, rut)
+VALUES ('Tomás', 'Vargas', '8.123.456-K');
+
+-- Subjects
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Matematicas', 'MAT-001', true);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Lenguaje', 'LEN-001', true);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Ciencias Naturales', 'CNT-001', true);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Fisica', 'FIS-001', true);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Biologia', 'BIO-001', false);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Ingles', 'ING-001', false);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Gastronomia', 'GTM-001', false);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Educacion Fisica', 'EDF-001', false);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Quimica', 'QMC-001', false);
+
+INSERT INTO subjects (name, code, mandatory)
+VALUES ('Logica Computacional', 'LCO-001', false);
+
+-- classes
+
+INSERT INTO classes (course, hall, schedule, teacher_id, subject_id)
+VALUES('Programacion orientada a objetos', 'B2', '10AM - 2PM', 1, 10);
+
+-- notes
+
+INSERT INTO notes (value, type, date, observation, student_id, school_class_id)
+VALUES (5.3, 'Prueba definiva', '2006-11-7', 'Alumno hace trampa en clases', 1, 1);

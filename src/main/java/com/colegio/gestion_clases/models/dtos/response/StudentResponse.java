@@ -2,7 +2,6 @@ package com.colegio.gestion_clases.models.dtos.response;
 
 import java.util.List;
 
-import com.colegio.gestion_clases.models.entities.Note;
 import com.colegio.gestion_clases.models.entities.Student;
 import com.colegio.gestion_clases.utils.DateFormatterUtil;
 
@@ -22,7 +21,7 @@ public class StudentResponse {
     private String createdAt;
     private String updatedAt;
 
-    private List<Note> notes;
+    private List<NoteResponse> notes;
 
     public StudentResponse(Student student) {
         this.id = student.getId();
@@ -32,6 +31,10 @@ public class StudentResponse {
         this.active = student.isActive();
         this.createdAt = DateFormatterUtil.format(student.getAudit().getCreatedAt());
         this.updatedAt = DateFormatterUtil.format(student.getAudit().getUpdatedAt());
-        this.notes = student.getNotes();
+
+        this.notes = student.getNotes()
+                            .stream()
+                            .map(NoteResponse::new)
+                            .toList();
     }
 }

@@ -1,6 +1,6 @@
 package com.colegio.gestion_clases.models.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import com.colegio.gestion_clases.models.embeddable.Audit;
 
@@ -29,7 +29,7 @@ public class Note {
     private String type;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "observation", nullable = true)
     private String observation;
@@ -72,11 +72,11 @@ public class Note {
         this.type = type;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -37,7 +37,7 @@ public class SchoolClass {
     @Column(name = "year_school")
     private Integer yearSchool = LocalDate.now().getYear();
 
-    @Column(name = "active", nullable = false)
+    @Column(name = "active", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean active;
 
     @ManyToOne
@@ -111,5 +111,29 @@ public class SchoolClass {
 
     public void setAudit(Audit audit) {
         this.audit = audit;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }
