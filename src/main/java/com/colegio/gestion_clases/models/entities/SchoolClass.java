@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.colegio.gestion_clases.models.embeddable.Audit;
+import com.colegio.gestion_clases.models.entities.embeddable.Audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

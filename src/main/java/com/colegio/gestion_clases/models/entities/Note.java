@@ -2,7 +2,7 @@ package com.colegio.gestion_clases.models.entities;
 
 import java.time.LocalDate;
 
-import com.colegio.gestion_clases.models.embeddable.Audit;
+import com.colegio.gestion_clases.models.entities.embeddable.Audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,12 +30,12 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @RequestMapping("")
+    @GetMapping("")
     public ResponseEntity<List<StudentSummaryResponse>> getAll() {
         return ResponseEntity.ok(studentService.getAll());
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<StudentDetailResponse> getById(
         @PathVariable(required = true) Long id
     ) {
